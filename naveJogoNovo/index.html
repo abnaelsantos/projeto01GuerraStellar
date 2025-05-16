@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
+    <title>Guerra Stellar</title>
+</head>
+<body>
+    
+    <div id="cenario">
+        <div id="menu" class="hidden">
+            <div id="vida">Vida: 100</div>
+            <div><button id="atualizar">Reiniciar</button></div>
+            <div class="botoes-controle">
+                <button id="pausar">Pausar</button>
+                <button id="retornar" hidden>Retornar</button>
+            </div>
+            <div id="pontos">Pontos: 0</div>
+        </div>
+
+        <div id="instrucao" class="instrucao">
+            <div type="button" id="btn-instrucao" onclick="instrucao()">Instrução</div>
+        </div>
+
+        <div id="txt-instrucao" class="txt-instrucao hidden">
+            <h1>Instruções do Jogo</h1>
+            <p>Bem-vindo à batalha espacial! Controle sua nave e derrote os inimigos.</p>
+            <ul>
+                <li><strong>Controles:</strong>
+                <ul>
+                    <li><strong>Setas:</strong> Mover a nave (cima, baixo, esquerda, direita)</li>
+                    <li><strong>Tecla Espaço:</strong> Atirar</li>
+                </ul>
+                </li>
+                <li><strong>Objetivo:</strong> Destrua naves inimigas para ganhar pontos. Evite colisões e tiros inimigos.</li>
+                <li><strong>Vida:</strong> Você começa com 100 de vida. Colisões ou tiros inimigos reduzem sua vida. O jogo termina se chegar a 0.</li>
+                <li><strong>Poderes:</strong> Coletar power-ups ativa tiros mais fortes por 10 segundos.</li>
+
+                <li></li>
+            </ul>
+            <button type="button" id="btnVoltar" onclick="btnVoltar()">Voltar</button>
+        </div>
+
+        <div id="nave"></div>
+        <button type ="button" id="iniciar" onclick="iniciarJogo()">Iniciar Jogo</button>
+    </div>
+
+    <script src="/script/script.js"></script>
+</body>
+</html>

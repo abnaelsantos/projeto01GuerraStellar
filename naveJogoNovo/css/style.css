@@ -1,0 +1,328 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    /* font-family: "vcr", sans-serif; */
+    font-family: "Press Start 2P", system-ui;
+    color: #fff;    
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: "vcr" ;
+    src: url(/fonts/VCR_OSD_MONO_1.001.ttf);
+}
+
+#cenario {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: url(/imagens/espaco.gif);
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover; 
+    overflow: hidden;
+}
+
+ #menu {
+    display: flex;
+    width: 80vw;
+    height: 10vh;
+    max-width: 1200px;
+    z-index: 222;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#menu #vida, #menu #pontos {
+    font-size: clamp(1rem, 2vw, 2rem);
+    font-weight: 900;
+}
+
+#menu #pausar, #menu #retornar, #menu #atualizar{
+    font-size: clamp(0.5rem, 1.5vw, 1.5rem);
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    width: 100px; 
+    font-weight: 500;
+    cursor: pointer;
+    
+}
+
+#nave {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background-image: url(/imagens/naveParaUsuario.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    bottom: 0;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+/* animação da neve quando colide ou leva um tiro */
+.sacudir{
+    animation: sacudir 0.5s ease-in-out;
+}
+
+@keyframes sacudir {
+    0%, 100% { transform: translate(0, 0); }
+    20% {transform: translate(-5px, 2px);}
+    40% {transform: translate(5px, -2px);}
+    60% {transform: translate(-3px, 3px);}
+    80% {transform: translate(3px, -3px);} 
+    
+}
+/* FIM animação da neve quando colide ou leva um tiro */
+
+#iniciar {
+    /* display: none;  */
+    position: absolute;
+    color: #000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: clamp(1.2rem, 2.2vw, 2rem);
+}
+
+.instrucao {
+    /* display: none;  */
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.instrucao #btn-instrucao {
+   
+    position: absolute;
+    color: #000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: clamp(1.2rem, 2.2vw, 2rem);
+    background-color: #FFF;
+    
+}
+
+.txt-instrucao {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.9);
+      border: 2px solid #00ffcc;
+      border-radius: 10px;
+      padding: 20px;
+      width: 80%;
+      max-width: 700px;
+      color: #00ffcc;
+      text-align: center;
+      z-index: 1000;
+      box-shadow: 0 0 20px rgba(35, 36, 36, 0.5);
+    }
+    .txt-instrucao h1 {
+      font-size: clamp(1.2rem, 2.2vw, 2rem);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      text-shadow: 0 0 5px #fff;
+    }
+    .txt-instrucao p {
+      font-size: clamp(1rem, 1.2vw, 2rem);
+      margin: 15px 0;
+      line-height: 1.5;
+    }
+    .txt-instrucao ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      font-size: clamp(0.8rem, 1vw, 1.5rem);
+    }
+    .txt-instrucao li {
+      margin: 15px 0;
+      line-height: 1.5;
+    }
+
+    .txt-instrucao #btnVoltar {
+        margin-top: 10px;
+        position: relative;
+        color: #000;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: clamp(1rem, 1.5vw, 1.5rem);
+        background-color: #FFF;
+    }
+
+.hidden {
+  display: none !important;
+}
+    
+
+.perdeu {
+    position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: #FFF;
+        font-size: 50px;
+        padding: 10px 30px;
+        
+        animation: zoom 1s ease-in-out forwards;
+        white-space: nowrap;
+        min-width: 200px;
+        display: inline-block;
+}
+
+.health-bar-container {
+    z-index: 10; /* Ensure health bar appears above other elements */
+}
+
+.health-bar {
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+/* Tiros da nave principal */
+
+.tiro {
+    background-color: rgba(255, 0, 0, 0.9); /* Red with slight transparency for glow */
+    animation: pulsarLaser 0.3s infinite alternate ease-in-out;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.7); /* Initial glow */
+}
+
+.tiro::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(to top, rgba(255, 0, 0, 0.5), transparent); /* Red trail fading upward */
+    bottom: 100%; /* Positioned above the shot */
+    left: 0;
+    z-index: -1; /* Behind the shot */
+}
+
+@keyframes pulsarLaser {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(255, 0, 0, 0.7), 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+    100% {
+        transform: scale(1.2);
+        box-shadow: 0 0 10px rgba(255, 0, 0, 1), 0 0 15px rgba(255, 0, 0, 0.8);
+    }
+}
+
+/* Tiros da nave Extra inimiga */
+
+.tiroExtra {
+    position: absolute;
+    width: 10px;
+    height: 50px;
+    border-radius: 40%;
+    background-color: rgba(204, 239, 255, 0.9); /* Branco azulado com leve transparência */
+    animation: pulsarPlasma 0.4s infinite alternate ease-in-out;
+    box-shadow: 0 0 5px rgba(0, 204, 255, 0.7); /* Brilho inicial para consistência */
+}
+
+.tiroExtra::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px; /* Altura do rastro */
+    background: linear-gradient(to bottom, rgba(0, 204, 255, 0.5), transparent); /* Azul desvanecendo para baixo */
+    top: 100%; /* Posicionado abaixo do tiro */
+    left: 0;
+    z-index: -1; /* Atrás do tiro */
+}
+
+@keyframes pulsarPlasma {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(0, 204, 255, 0.7), 0 0 10px rgba(0, 204, 255, 0.5);
+    }
+    100% {
+        transform: scale(1.15);
+        box-shadow: 0 0 15px rgba(0, 204, 255, 1), 0 0 20px rgba(0, 204, 255, 1);
+    }
+}
+
+/* Animação dos tiro 2 e 3 */
+.tiro2, .tiro3 {
+    background-color: rgba(0, 204, 255, 0.9); /* Azul brilhante com transparência */
+    animation: pulsarLaser 0.3s infinite alternate ease-in-out;
+    box-shadow: 0 0 5px rgba(0, 204, 255, 0.7); /* Brilho azul */
+    position: absolute;
+    
+  }
+
+.tiro2::after, .tiro3::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(to top, rgba(0, 204, 255, 0.5), transparent); /* Rastro azul */
+    bottom: 100%; /* Acima do tiro */
+    left: 0;
+    z-index: -1; /* Atrás do tiro */
+  }
+  
+  @keyframes pulsarLaser {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 5px rgba(0, 204, 255, 0.7); /* Ajuste para .tiro2, .tiro3 */
+    }
+    100% {
+      transform: scale(1.2);
+      box-shadow: 0 0 10px rgba(0, 204, 255, 1); /* Brilho mais intenso */
+    }
+  }
+
+  /* FIM Animação dos tiro 2 e 3 */
+
+/* Efeitos do jogo */
+@keyframes zoom {
+    from {
+        transform: translate(-50%, -50%) scale(0);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes animarCenario {
+    from{
+        background-position-y: 100%;
+
+    }
+    to{
+        background-position-y: 0%;
+    }
+}
+
